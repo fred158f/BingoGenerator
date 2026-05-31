@@ -1,0 +1,85 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<div class="bingo-card">
+    <span>BINGO</span>
+    <div style="font-size: 1.5rem">Choose marker color: <input @bind-value="hexColor" type="color" /></div>
+    <BingoCard MarkerColor="@hexColor" SquareContents="@GetRandomSquares(db)" />
+</div>
+
+@code {
+    string[] db = [
+        "\"HOW MANY KIDS?\"",
+        "ONLY FANS",
+        "INSECURE",
+        "MANSPLAINING",
+        "BALD",
+        "CHRISTIAN",
+        "VERY TALL",
+        "IT'S NOTHING PERSONAL",
+        "ALTERNATIVE",
+        "FUCK BOY",
+        "\"WHATS YOUR IDEAL FIRST DATE\"",
+        "AUTISM",
+        "\"WHATS YOUR LOVE LANGUAGE\"",
+        "CHEATING",
+        "YELLING",
+        "HOW MANY BABY DADDIES",
+        "POPPED AT FINAL QUESTION",
+        "PETTY AFTER THEIR BALLOON WAS POPPED",
+        "HAS 5 JOBS (UNEMPLOYED)",
+        "CALLING WOMEN \"FEMALES\"",
+        "\"WHY DID YOUR LAST RELATIONSHIP END\"",
+        "WAS IN A PREVIOUS EPISODE",
+        "PET NAMES",
+        "\"YOU KNOW WHAT I'M SAYING\"",
+        "TRUMP LOVER",
+        "TOO MANY UHMS",
+        "PLASTIC SURGERY",
+        "UNDERDRESSED",
+        "ALL BALLOONS POPPED INSTANTLY",
+        "SOMEONE GETS THEIR BALLOON BACK",
+        "TELLING WOMEN WHAT THEY NEED TO IMPROVE",
+        "WEARING SUNGLASSES INDOORS",
+        "OVERDRESSED",
+        "VERY SHORT",
+        "BODY SHAMING",
+        "HOST LAUGS AT SOMETHING OUT OF POCKET",
+        "SEXISM",
+        "BLEACHED HAIR",
+        "BABY DADDY",
+        "CRIMINAL",
+        "ROASTING",
+        "\"JUST WANTED TO HEAR THEM OUT\"",
+        "GAMER",
+        "POT HEAD",
+        "FLEXING MONEY",
+        "MUSLIM",
+        "RACISM",
+        "ALPHA MALE"
+        ];
+    Queue<string> squares = new Queue<string>();
+    string hexColor = "#FFFFFF";
+    int temp = 1;
+
+    private Queue<string> GetRandomSquares(IEnumerable<string> SquareList)
+    {
+        List<int> randList = [];
+        Queue<string> result = new();
+        Random rand = new();
+
+        for (int i = 0; i < 25; i++)
+        {
+            int RandVal = rand.Next(SquareList.Count());
+            if (!randList.Contains(RandVal))
+            {
+                result.Enqueue(SquareList.ElementAt(RandVal));
+                randList.Add(RandVal);
+            }
+            else
+                i--;
+        }
+
+        return result;
+    }
+}

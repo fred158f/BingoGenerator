@@ -1,0 +1,11 @@
+﻿:root {
+    --tick-color: yellow;
+}
+
+.bingo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 5rem;
+}

@@ -1,0 +1,11 @@
+﻿<div class="bingo-line">
+    @foreach(string square in Squares)
+    {
+        <BingoSquare MarkerColor="@MarkerColor" SquareText="@square"/>
+    }
+</div>
+
+@code {
+    [Parameter] public IEnumerable<string> Squares { get; set; }
+    [Parameter] public string MarkerColor { get; set; }
+}

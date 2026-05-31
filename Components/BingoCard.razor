@@ -1,0 +1,13 @@
+﻿
+<div style="font-size: 1rem">
+    @for (int i = 0; i < 5; i++)
+    {
+        <BingoLine MarkerColor="@MarkerColor" Squares="SquareContents.DequeueChunk(5)" />
+    }
+</div>
+
+@code {
+    [Parameter] public Queue<string> SquareContents { get; set; }
+    [Parameter] public string MarkerColor { get; set; } = "#FFFFFF";
+
+}
